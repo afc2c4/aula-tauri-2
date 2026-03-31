@@ -1,0 +1,27 @@
+[package]
+name = "todo-tauri"
+version = "0.1.0"
+description = "Todo-Tauri: Do Zero à Produção — CRUD completo com Tauri v2 e Rust"
+authors = []
+edition = "2021"
+
+# Compila o crate tanto como biblioteca (para testes e mobile) quanto como binário.
+[lib]
+name = "todo_tauri_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+# Otimização máxima para o binário de produção.
+opt-level = "s"  # Otimiza pelo tamanho do binário
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

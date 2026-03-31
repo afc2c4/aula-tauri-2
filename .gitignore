@@ -1,0 +1,15 @@
+# Binários Rust
+target/
+
+# Módulos Node (para ferramentas de desenvolvimento opcionais)
+node_modules/
+
+# Arquivos gerados pelo Tauri
+src-tauri/gen/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Artefatos de build do frontend (não aplicável neste projeto sem bundler)
+dist/

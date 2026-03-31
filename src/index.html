@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" />
+  <title>Todo-Tauri</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Cabeçalho -->
+    <header class="app-header">
+      <h1 class="app-title">
+        <span class="app-title__icon" aria-hidden="true">✅</span>
+        Todo-Tauri
+      </h1>
+      <p class="app-subtitle">Suas tarefas, organizadas.</p>
+    </header>
+
+    <!-- Formulário de nova tarefa -->
+    <section class="card form-card" aria-label="Adicionar nova tarefa">
+      <h2 class="card__heading">Nova Tarefa</h2>
+      <form id="form-add-task" novalidate>
+        <div class="field-group">
+          <label for="input-title" class="field-label">
+            Título <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="input-title"
+            class="field-input"
+            type="text"
+            placeholder="Ex.: Comprar leite"
+            maxlength="120"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field-group">
+          <label for="input-description" class="field-label">Descrição</label>
+          <textarea
+            id="input-description"
+            class="field-input field-textarea"
+            placeholder="Detalhes opcionais…"
+            rows="2"
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn--primary" id="btn-add">
+            Adicionar
+          </button>
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Filtros -->
+    <nav class="filter-bar" aria-label="Filtrar tarefas">
+      <button class="filter-btn filter-btn--active" data-filter="all">Todas</button>
+      <button class="filter-btn" data-filter="active">Ativas</button>
+      <button class="filter-btn" data-filter="completed">Concluídas</button>
+      <span class="task-count" id="task-count" aria-live="polite"></span>
+    </nav>
+
+    <!-- Lista de tarefas -->
+    <section class="card list-card" aria-label="Lista de tarefas">
+      <ul id="task-list" class="task-list" aria-label="Tarefas"></ul>
+      <p id="empty-message" class="empty-message" hidden>
+        Nenhuma tarefa encontrada. Adicione uma acima! 🎉
+      </p>
+    </section>
+
+  </div>
+
+  <!-- Modal de edição -->
+  <dialog id="edit-modal" class="modal" aria-labelledby="modal-title">
+    <form id="form-edit-task" method="dialog" novalidate>
+      <h2 id="modal-title" class="modal__title">Editar Tarefa</h2>
+
+      <div class="field-group">
+        <label for="edit-title" class="field-label">
+          Título <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input
+          id="edit-title"
+          class="field-input"
+          type="text"
+          maxlength="120"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="field-group">
+        <label for="edit-description" class="field-label">Descrição</label>
+        <textarea
+          id="edit-description"
+          class="field-input field-textarea"
+          rows="3"
+          maxlength="500"
+        ></textarea>
+      </div>
+
+      <div class="field-group field-group--inline">
+        <input id="edit-completed" type="checkbox" class="field-checkbox" />
+        <label for="edit-completed" class="field-label field-label--inline">
+          Marcar como concluída
+        </label>
+      </div>
+
+      <p id="edit-error" class="form-error" role="alert" aria-live="polite"></p>
+
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" id="btn-cancel-edit">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn--primary" id="btn-save-edit">
+          Salvar
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="main.js"></script>
+</body>
+</html>

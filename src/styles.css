@@ -1,0 +1,258 @@
+/* =========================================================
+   VARIÁVEIS DE DESIGN (Custom Properties)
+   ========================================================= */
+:root {
+  --color-bg:          #f0f2f5;
+  --color-surface:     #ffffff;
+  --color-primary:     #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-danger:      #dc2626;
+  --color-danger-hover:#b91c1c;
+  --color-success:     #16a34a;
+  --color-text:        #1e293b;
+  --color-text-muted:  #64748b;
+  --color-border:      #e2e8f0;
+  --color-completed-bg:#f8fafc;
+  --color-completed-text: #94a3b8;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-modal: 0 20px 60px rgba(0,0,0,.20);
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --transition: 160ms ease;
+}
+
+/* =========================================================
+   RESET MÍNIMO
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+.app-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+.app-header { text-align: center; }
+.app-title  { font-size: 2rem; font-weight: 700; letter-spacing: -.5px; }
+.app-title__icon { margin-right: .35rem; }
+.app-subtitle { color: var(--color-text-muted); font-size: .9rem; margin-top: .25rem; }
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+}
+.card__heading {
+  font-size: .75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* =========================================================
+   CAMPOS DE FORMULÁRIO
+   ========================================================= */
+.field-group { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .85rem; }
+.field-group--inline { flex-direction: row; align-items: center; gap: .5rem; margin-top: .25rem; }
+
+.field-label { font-size: .875rem; font-weight: 500; }
+.field-label--inline { font-weight: 400; cursor: pointer; }
+
+.field-input {
+  width: 100%;
+  padding: .55rem .75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: .9375rem;
+  font-family: inherit;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.field-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79,70,229,.15);
+}
+.field-textarea { resize: vertical; min-height: 64px; }
+.field-checkbox { width: 1rem; height: 1rem; cursor: pointer; accent-color: var(--color-primary); }
+
+.required { color: var(--color-danger); }
+.form-error { font-size: .8125rem; color: var(--color-danger); min-height: 1.2em; margin-top: .25rem; }
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .375rem;
+  padding: .55rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: .9375rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--ghost  { background: transparent; color: var(--color-text-muted); border-color: var(--color-border); }
+.btn--ghost:hover  { background: var(--color-bg); }
+.btn--danger { background: var(--color-danger); color: #fff; }
+.btn--danger:hover { background: var(--color-danger-hover); }
+
+.form-actions { display: flex; justify-content: flex-end; }
+
+/* =========================================================
+   BARRA DE FILTROS
+   ========================================================= */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: .35rem .85rem;
+  border-radius: 99px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: .85rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.filter-btn:hover { background: var(--color-bg); color: var(--color-text); }
+.filter-btn--active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.task-count { margin-left: auto; font-size: .8rem; color: var(--color-text-muted); }
+
+/* =========================================================
+   LISTA DE TAREFAS
+   ========================================================= */
+.list-card { padding: 0; overflow: hidden; }
+.task-list  { list-style: none; }
+.task-list  li + li { border-top: 1px solid var(--color-border); }
+
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  transition: background var(--transition);
+}
+.task-item:hover { background: var(--color-bg); }
+.task-item.is-completed { background: var(--color-completed-bg); }
+
+.task-checkbox {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: .18rem;
+  cursor: pointer;
+  accent-color: var(--color-success);
+}
+
+.task-body { flex: 1; min-width: 0; }
+.task-title {
+  font-size: .9375rem;
+  font-weight: 500;
+  word-break: break-word;
+  transition: color var(--transition), text-decoration var(--transition);
+}
+.is-completed .task-title {
+  color: var(--color-completed-text);
+  text-decoration: line-through;
+}
+.task-description {
+  font-size: .8125rem;
+  color: var(--color-text-muted);
+  margin-top: .2rem;
+  word-break: break-word;
+}
+.task-meta {
+  font-size: .75rem;
+  color: var(--color-border);
+  margin-top: .3rem;
+}
+
+.task-actions {
+  display: flex;
+  gap: .4rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+.btn-icon {
+  padding: .3rem .55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  cursor: pointer;
+  font-size: .8rem;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1;
+}
+.btn-icon--edit:hover   { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+.btn-icon--delete:hover { background: var(--color-danger);  color: #fff; border-color: var(--color-danger); }
+
+.empty-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 2.5rem 1rem;
+  font-size: .9375rem;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+.modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-modal);
+  padding: 2rem;
+  width: min(480px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--color-surface);
+}
+.modal::backdrop { background: rgba(0,0,0,.45); }
+.modal__title   { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.25rem; }
+.modal__actions { display: flex; justify-content: flex-end; gap: .5rem; margin-top: 1rem; }
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+@media (max-width: 480px) {
+  .app-container { padding: 1rem .75rem 3rem; }
+  .task-item { padding: .85rem 1rem; }
+}
